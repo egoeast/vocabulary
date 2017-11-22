@@ -36,14 +36,43 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        /*
+
         'urlManager' => [
+            'class' => 'yii\web\UrlManager',
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                'voc' => 'test/index',
             ],
         ],
-        */
+        'view' => [
+            'class' => 'yii\web\View',
+            'renderers' => [
+                'twig' => [
+                    'class' => 'yii\twig\ViewRenderer',
+                    'cachePath' => '@runtime/Twig/cache',
+                    // Array of twig options:
+                    'options' => [
+                        'auto_reload' => true,
+                    ],
+                    'globals' => [
+                        'html' => ['class' => '\yii\helpers\Html'],
+                        //'lang' => ['class' => 'Yii'],
+                    ],
+                    'functions' => array(
+                        'lang' => 'Yii::t',
+                    ),
+                    'uses' => ['yii\bootstrap'],
+                    'extensions' => [
+                        //'Twig\Extensions\I18nExtension',
+                    ],
+
+                ],
+                // ...
+
+            ],
+        ],
+
     ],
     'params' => $params,
 ];

@@ -1,12 +1,13 @@
 <?php
 
-namespace app\controllers;
+namespace frontend\controllers;
 
-class TestController extends \yii\web\Controller
+use yii\web\Controller;
+class TestController extends Controller
 {
     public function actionIndex()
     {
-        return $this->render('index');
+        return $this->render('index.twig');
     }
 
 }
