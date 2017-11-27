@@ -3,14 +3,14 @@
 
 <div class="">
 
-    {{ lang('app', 'Hello') }}
-    {{ langq }}
+    {{ lang('frontend', 'Hello') }}
+
     {% set form = active_form_begin({
     'id' : 'translation',
 
 
     })%}
-    {{ form.field(translation, 'id').label(lang('app', 'Vocabulary')) | raw }}
+    {{ form.field(translation, 'id_voc').label(lang('frontend', 'Vocabulary')) | raw }}
     {{ form.field(translation, 'text') | raw }}
     {{ form.field(translation, 'translation') | raw }}
 

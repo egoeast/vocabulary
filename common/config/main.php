@@ -18,7 +18,7 @@ return [
                     'basePath' => '@common/messages',
                     //'sourceLanguage' => 'en-US',
                     'fileMap' => [
-                        'app' => 'app.php',
+                        'frontend' => 'app.php',
 
                     ],
                 ],
