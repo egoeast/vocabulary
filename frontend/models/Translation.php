@@ -28,7 +28,7 @@ class Translation extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['id_voc', 'text', 'translation'], 'required'],
+            [['text'], 'required'],
             [['id_voc'], 'integer'],
             [['text', 'translation'], 'string'],
         ];

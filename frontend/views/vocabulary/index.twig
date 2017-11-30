@@ -1,0 +1,26 @@
+{{ use('yii\helpers\Html') }}
+{{ use('yii\widgets\ActiveForm') }}
+
+<div class="">
+
+    {{ lang('frontend', 'Hello') }}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>{{ lang('frontend', 'Name') }}</th>
+                <th>{{ lang('frontend', 'Description') }}</th>
+                <th>{{ lang('frontend', 'Description') }}</th>
+                <th>{{ lang('frontend', 'Description') }}</th>
+            </tr>
+        </thead>
+        {% for voc in vocabularies %}
+            <tr>
+                <td>{{ voc.name}}</td>
+                <td>{{ voc.description }}</td>
+                <td>{{ html.a(lang('frontend', 'Redakt'), url(['vocabulary/update',{'alias' : voc.id}]), {'class':'btn btn-primary'}) | raw }}</td>
+                <td>{{ html.a(lang('frontend', 'Delete'), 'link', {'class':'btn btn-danger'}) | raw }}</td>
+                <td>{{ html.a('<i class="fa fa-pencil" aria-hidden="true"></i>', 'link', {'class':'btn btn-danger'}) | raw }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+</div>
