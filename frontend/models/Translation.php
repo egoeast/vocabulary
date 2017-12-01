@@ -46,4 +46,9 @@ class Translation extends \yii\db\ActiveRecord
             'translation' => Yii::t('frontend', 'Translation'),
         ];
     }
+
+    public function getVocabulary()
+    {
+        return $this->hasOne(Vocabulary::className(),  ['id' => 'id_voc']);
+    }
 }

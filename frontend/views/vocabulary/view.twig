@@ -1,0 +1,23 @@
+{{ use('yii\helpers\Html') }}
+{{ use('yii\widgets\ActiveForm') }}
+
+{{ voc.name }}
+<table class="table">
+    <thead>
+    <tr>
+        <th>{{ lang('frontend', 'Text') }}</th>
+        <th>{{ lang('frontend', 'Translation') }}</th>
+    </tr>
+    </thead>
+    <tbody>
+{% for item in trans %}
+
+
+            <tr>
+                <td>{{ item.text }}</td>
+                <td>{{ item.translation }}</td>
+            </tr>
+
+{% endfor %}
+    </tbody>
+</table>

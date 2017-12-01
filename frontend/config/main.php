@@ -47,6 +47,7 @@ return [
             'rules' => [
                 'voc' => 'test/index',
                 'trans' => 'simple-translate/index',
+                'voc-view/<id:\d+>' => 'vocabulary/view',
             ],
         ],
         'view' => [

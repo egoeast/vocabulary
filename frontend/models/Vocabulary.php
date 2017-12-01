@@ -3,6 +3,7 @@
 namespace frontend\models;
 
 use Yii;
+use frontend\models\Translation;
 
 /**
  * This is the model class for table "vocabulary".
@@ -44,5 +45,10 @@ class Vocabulary extends \yii\db\ActiveRecord
             'decription' => Yii::t('frontend', 'Decription'),
             'lang_pair' => Yii::t('frontend', 'Lang Pair'),
         ];
+    }
+
+    public function getTranslations()
+    {
+        return $this->hasMany(Translation::className(), ['id_voc' => 'id']);
     }
 }

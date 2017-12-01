@@ -16,6 +16,14 @@ class VocabularyController extends Controller
         return $this->render('index.twig', ['vocabularies' => $vocabularies]);
     }
 
+    public function actionView($id)
+    {
+        $voc = Vocabulary::findOne($id);
+        $trans = $voc->translations;
+        //VarDumper::dump($trans);
+        return $this->render('view.twig', ['voc' => $voc, 'trans'=> $trans]);
+    }
+
     public function actionCreate()
     {
         $voc = new Vocabulary();
@@ -23,7 +31,7 @@ class VocabularyController extends Controller
         {
             $voc->save();
             $voc = new Vocabulary();
-            return $this->render('create.twig', ['voc' => $voc]);
+            return $this->redirect(['vocabulary/index']);
         }
         return $this->render('create.twig', ['voc' => $voc]);
     }
@@ -39,6 +47,13 @@ class VocabularyController extends Controller
             return $this->render('create.twig', ['voc' => $voc]);
         }
         return $this->render('update.twig', ['voc' => $voc]);
+    }
+
+    public function actionDelete($id)
+    {
+        $voc = Vocabulary::findOne($id);
+        $voc->delete();
+        return $this->redirect(['vocabulary/index']);
     }
 
 }

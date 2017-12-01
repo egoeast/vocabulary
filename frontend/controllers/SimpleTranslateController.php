@@ -35,7 +35,7 @@ class SimpleTranslateController extends Controller
             $translation->translation = $this->yandexTranslate($text, $lang);
             //return "sad";
 
-            //$translation->save();
+            $translation->save();
         }
         return $this->render('index.twig', ['translation' => $translation]);
     }
