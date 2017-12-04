@@ -2,6 +2,7 @@
 
 namespace frontend\controllers;
 
+use Faker\Provider\cs_CZ\DateTime;
 use Yii;
 use yii\web\Controller;
 use frontend\models\Translation;
@@ -33,6 +34,7 @@ class SimpleTranslateController extends Controller
             $text = $translation->text;
             $lang = 'en-ru';
             $translation->translation = $this->yandexTranslate($text, $lang);
+            //$translation->date = new DateTime();
             //return "sad";
 
             $translation->save();

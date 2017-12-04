@@ -19,7 +19,7 @@
         <tbody>
         {% for voc in vocabularies %}
             <tr>
-                <td>{{ voc.name}}</td>
+                <td>{{ html.a(voc.name, url(['vocabulary/view'], {id : voc.id}), {'class':'btn btn-primary'}) | raw }}</td>
                 <td>{{ voc.description }}</td>
                 <td>{{ html.a(lang('frontend', 'Redakt'), url(['vocabulary/update'], {id : voc.id}), {'class':'btn btn-primary'}) | raw }}</td>
                 <td>{{ html.a(lang('frontend', 'Delete'), url(['vocabulary/delete'], {id : voc.id}), {'class':'btn btn-danger'}) | raw }}</td>

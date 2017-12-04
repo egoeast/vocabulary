@@ -31,6 +31,7 @@ class Translation extends \yii\db\ActiveRecord
             [['text'], 'required'],
             [['id_voc'], 'integer'],
             [['text', 'translation'], 'string'],
+            [['date'], 'datetime'],
         ];
     }
 
@@ -44,6 +45,7 @@ class Translation extends \yii\db\ActiveRecord
             'id_voc' => Yii::t('frontend', 'Id Voc'),
             'text' => Yii::t('frontend', 'Text'),
             'translation' => Yii::t('frontend', 'Translation'),
+            'date' => Yii::t('frontend', 'Date'),
         ];
     }
 
