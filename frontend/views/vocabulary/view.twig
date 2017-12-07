@@ -1,5 +1,6 @@
 {{ use('yii\helpers\Html') }}
 {{ use('yii\widgets\ActiveForm') }}
+{{ use('yii\i18n\Formatter') }}
 
 {{ voc.name }}
 <table class="table">
@@ -7,6 +8,7 @@
     <tr>
         <th>{{ lang('frontend', 'Text') }}</th>
         <th>{{ lang('frontend', 'Translation') }}</th>
+        <th>{{ lang('frontend', 'Date') }}</th>
     </tr>
     </thead>
     <tbody>
@@ -16,6 +18,7 @@
             <tr>
                 <td>{{ item.text }}</td>
                 <td>{{ item.translation }}</td>
+                <td>{{ format.asDate('2014-01-01') }}</td>
             </tr>
 
 {% endfor %}

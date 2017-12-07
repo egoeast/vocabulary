@@ -22,23 +22,35 @@ class SimpleTranslateController extends Controller
 
     public function actionIndex()
     {
-        //\Yii::$app->language = 'ru-RU';
+        Yii::$app->language = 'ru-RU';
         //$lang = \Yii::$app->language;
         $translation = new Translation();
         //$translation->text ='123';
         //$translation->translation ='123';
         //$translation->id_voc = '1';
         //$translation->save();
+        //Yii::$app->formatter->locale = 'ru-RU';
+        //echo Yii::$app->formatter->asDate(time(), 'long', 'short');
+
+       // echo Yii::$app->dateFormatter->formatDateTime(time(), 'long', 'short');
         if($translation->load(Yii::$app->request->post()) && $translation->validate())
         {
             $text = $translation->text;
             $lang = 'en-ru';
             $translation->translation = $this->yandexTranslate($text, $lang);
-            //$translation->date = new DateTime();
+            //echo date('Y-m-d H:i:s', time());
+            //echo 'sad';
+            //echo Yii::app()->dateFormatter->formatDateTime(time(), 'long', 'short');
+            $translation->date = date('Y-m-d H:i:s', time());
+            //$translation->date = Yii::$app->formatter->asDate('now', 'Y-m-d H:i:s');
+
+
+            //$translation->date = new DateTime(time());
             //return "sad";
 
             $translation->save();
         }
+        //echo Yii::$app->formatter->asDate(date('Y-m-d H:i:s', time()));
         return $this->render('index.twig', ['translation' => $translation]);
     }
 

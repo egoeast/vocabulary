@@ -62,10 +62,11 @@ return [
                     ],
                     'globals' => [
                         'html' => ['class' => '\yii\helpers\Html'],
-                        //'lang' => ['class' => 'Yii'],
+                        'format' => ['class' => 'yii\i18n\Formatter'],
                     ],
                     'functions' => array(
                         'lang' => 'Yii::t',
+                        //'dateformat' => 'Yii::$app->formatter->asDate',
                     ),
                     'uses' => ['yii\bootstrap'],
                     'extensions' => [

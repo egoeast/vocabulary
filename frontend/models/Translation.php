@@ -31,7 +31,7 @@ class Translation extends \yii\db\ActiveRecord
             [['text'], 'required'],
             [['id_voc'], 'integer'],
             [['text', 'translation'], 'string'],
-            [['date'], 'datetime'],
+            [['date'], 'safe'],
         ];
     }
 
