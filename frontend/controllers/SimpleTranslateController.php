@@ -20,6 +20,25 @@ class SimpleTranslateController extends Controller
         return $text;
     }
 
+    public function actionTranslate()
+    {
+        if (Yii::$app->request->isAjax) {
+            $data = Yii::$app->request->post();
+            $searchname= explode(":", $data['text']);
+            //$searchby= explode(":", $data['searchby']);
+            //$searchname= $searchname[0];
+            //$searchby= $searchby[0];
+            //$search = // your logic;
+                \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+            return [
+                'search' => $searchname,
+                'code' => 100,
+            ];
+        }
+        //$lang = 'en-ru';
+        //$translation->translation = $this->yandexTranslate($text, $lang);
+    }
+
     public function actionIndex()
     {
         Yii::$app->language = 'ru-RU';
