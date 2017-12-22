@@ -6,14 +6,22 @@
     {{ lang('frontend', 'Hello') }}
 
     {% set form = active_form_begin({
-    'id' : 'translation',
+    'id' : 'translation-form',
 
 
     })%}
     {{ form.field(translation, 'id_voc').label(lang('frontend', 'Vocabulary')) | raw }}
-    {{ form.field(translation, 'text') | raw }}
-    {{ form.field(translation, 'translation') | raw }}
-
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                {{ form.field(translation, 'text') | raw }}
+            </div>
+            <div class="col-md-6">
+                {{ form.field(translation, 'translation') | raw }}
+            </div>
+            </div>
+        </div>
+    </div>
     <div class="form-group">
 
         <!--<?= Html::submitButton(Yii::t('app', 'Submit'), ['class' => 'btn btn-primary']) ?>-->

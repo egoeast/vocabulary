@@ -4,7 +4,7 @@
 $('.trans-btn').click(function(){
     //alert("Translate!");
    // alert($( "input[name='_csrf-frontend']" ).attr('value'));
-     alert($("#translation-text").val());
+    // alert($("#translation-text").val());
 
     $.ajax({
         url: '/yii-voc/frontend/web/simple-translate/translate',
@@ -14,7 +14,8 @@ $('.trans-btn').click(function(){
             text: $("#translation-text").val(),
         },
         success: function (data) {
-            console.log(data);
+           //alert(data.search);
+            $( "input[name='Translation[translation]']" ).val(data.search);
         }
     });
 });
