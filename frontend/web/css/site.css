@@ -118,3 +118,9 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+
+#load-img {
+    position:absolute;
+    z-index:1000;
+    display:none
+}

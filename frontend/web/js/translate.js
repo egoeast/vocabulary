@@ -5,9 +5,10 @@ $('.trans-btn').click(function(){
     //alert("Translate!");
    // alert($( "input[name='_csrf-frontend']" ).attr('value'));
     // alert($("#translation-text").val());
-
+    //startLoadingAnimation();
     $.ajax({
-        url: '/yii-voc/frontend/web/simple-translate/translate',
+
+    url: '/simple-translate/translate',
         type: 'post',
         data: {
             _csrf: yii.getCsrfToken(),
@@ -18,4 +19,26 @@ $('.trans-btn').click(function(){
             $( "input[name='Translation[translation]']" ).val(data.search);
         }
     });
+    //$("#load-img").delay(1000);
+    //stopLoadingAnimation();
 });
+
+function startLoadingAnimation() // - функция запуска анимации
+{
+    // найдем элемент с изображением загрузки и уберем невидимость:
+    var imgObj = $("#load-img");
+    imgObj.show();
+
+    // вычислим в какие координаты нужно поместить изображение загрузки,
+    // чтобы оно оказалось в серидине страницы:
+    var centerY = $(window).scrollTop() + ($(window).height() + imgObj.height())/2;
+    var centerX = $(window).scrollLeft() + ($(window).width() + imgObj.width())/2;
+
+    // поменяем координаты изображения на нужные:
+    imgObj.offset({top: centerY, left: centerX});
+}
+
+function stopLoadingAnimation() // - функция останавливающая анимацию
+{
+    $("#load-img").hide();
+}
