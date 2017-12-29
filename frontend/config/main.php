@@ -14,6 +14,9 @@ return [
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
+        'authManager' => [
+            'class' => 'yii\rbac\PhpManager',
+        ],
         
         'request' => [
             'csrfParam' => '_csrf-frontend',

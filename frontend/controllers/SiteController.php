@@ -210,4 +210,9 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+
+    public function actionNeedToRegister()
+    {
+        return $this->render('need-to-register.twig');
+    }
 }
