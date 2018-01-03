@@ -17,7 +17,7 @@ class m171123_080821_create_translations extends Migration
             'id_voc' => $this->integer()->notNull(),
             'text' => $this->text()->notNull()->defaultValue(''),
             'translation' => $this->text()->notNull()->defaultValue(''),
-            'date' => $this->dateTime()->notNull()->defaultValue(''),
+            'created_at' => $this->dateTime(),
         ]);
     }
 

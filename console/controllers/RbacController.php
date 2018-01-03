@@ -8,37 +8,31 @@ class RbacController extends Controller
 {
     public function actionInit()
     {
-        $auth = Yii::$app->authыManager;
-
-        // добавляем разрешение "createPost"
-        $createPost = $auth->createPermission('createPost');
-        $createPost->description = 'Create a post';
-        $auth->add($createPost);
-
-        // добавляем разрешение "updatePost"
-        $updatePost = $auth->createPermission('updatePost');
-        $updatePost->description = 'Update post';
-        $auth->add($updatePost);
+        $auth = Yii::$app->authManager;
 
         $simpleTranslate = $auth->createPermission('simpleTranslate');
         $simpleTranslate->description = 'Simple translate';
         $auth->add($simpleTranslate);
 
+        $createVocabulary = $auth->createPermission('createVocabulary');
+        $createVocabulary->description = 'Create Vocabulary';
+        $auth->add($createVocabulary);
+
         // добавляем роль "author" и даём роли разрешение "createPost"
-        $author = $auth->createRole('author');
-        $auth->add($author);
-        $auth->addChild($author, $createPost);
-        $auth->addChild($author, $simpleTranslate);
+        $user = $auth->createRole('user');
+        $auth->add($user);
+        //$auth->addChild($author, $createPost);
+        $auth->addChild($user, $simpleTranslate);
         // добавляем роль "admin" и даём роли разрешение "updatePost"
         // а также все разрешения роли "author"
         $admin = $auth->createRole('admin');
         $auth->add($admin);
-        $auth->addChild($admin, $updatePost);
-        $auth->addChild($admin, $author);
-
+        //$auth->addChild($admin, $updatePost);
+        $auth->addChild($admin, $user);
+        $auth->addChild($admin, $createVocabulary);
         // Назначение ролей пользователям. 1 и 2 это IDs возвращаемые IdentityInterface::getId()
         // обычно реализуемый в модели User.
-        $auth->assign($author, 2);
         $auth->assign($admin, 1);
+        $auth->assign($user, 2);
     }
 }

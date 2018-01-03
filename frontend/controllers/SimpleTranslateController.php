@@ -43,7 +43,7 @@ class SimpleTranslateController extends Controller
 
     public function actionIndex()
     {
-        if (!Yii::$app->user->can('simpleTranslate')) {
+        if (Yii::$app->user->can('simpleTranslate')) {
             Yii::$app->language = 'ru-RU';
             //$lang = \Yii::$app->language;
             $translation = new Translation();

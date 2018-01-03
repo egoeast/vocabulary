@@ -25,15 +25,17 @@ class VocabularyController extends Controller
     }
 
     public function actionCreate()
-    {
-        $voc = new Vocabulary();
-        if($voc->load(Yii::$app->request->post()) && $voc->validate())
+    {   if(Yii::$app->user->can('createVocabulary'))
         {
+        $voc = new Vocabulary();
+        if ($voc->load(Yii::$app->request->post()) && $voc->validate()) {
+            $voc->
             $voc->save();
-            $voc = new Vocabulary();
             return $this->redirect(['vocabulary/index']);
         }
         return $this->render('create.twig', ['voc' => $voc]);
+        }
+        else echo('Nope');
     }
 
     public function actionUpdate($id)

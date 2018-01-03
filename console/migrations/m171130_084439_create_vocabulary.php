@@ -14,6 +14,7 @@ class m171130_084439_create_vocabulary extends Migration
     {
         $this->createTable('vocabulary', [
             'id' => $this->primaryKey(),
+            'id_user' => $this->integer()->notNull(),
             'name' => $this->text()->notNull(),
             'description' => $this->text()->defaultValue(''),
             'lang_pair' => $this->text()->notNull()->defaultValue(''),

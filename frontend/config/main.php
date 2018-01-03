@@ -14,9 +14,7 @@ return [
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
     'components' => [
-        'authManager' => [
-            'class' => 'yii\rbac\PhpManager',
-        ],
+
         
         'request' => [
             'csrfParam' => '_csrf-frontend',
@@ -51,6 +49,7 @@ return [
                 'voc' => 'test/index',
                 'trans' => 'simple-translate/index',
                 'voc-view/<id:\d+>' => 'vocabulary/view',
+                
             ],
         ],
         'view' => [
