@@ -25,11 +25,11 @@ class VocabularyController extends Controller
     }
 
     public function actionCreate()
-    {   if(Yii::$app->user->can('createVocabulary'))
+    {   if(!Yii::$app->user->isGuest)
         {
         $voc = new Vocabulary();
         if ($voc->load(Yii::$app->request->post()) && $voc->validate()) {
-            $voc->
+            $voc->id_user = Yii::$app->user->getId();
             $voc->save();
             return $this->redirect(['vocabulary/index']);
         }
