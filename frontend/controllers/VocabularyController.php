@@ -5,13 +5,16 @@ namespace frontend\controllers;
 use Yii;
 use yii\web\Controller;
 use frontend\models\Vocabulary;
+use common\models\User;
 use yii\helpers\VarDumper;
 
 class VocabularyController extends Controller
 {
     public function actionIndex()
     {
-        $vocabularies = Vocabulary::find()->all();
+        //$user = User::findOne(Yii::$app->user->getId());
+        //$user = Yii::$app->user->identity;
+        $vocabularies = Yii::$app->user->getIdentity()->vocabularies;
         //VarDumper::dump($vocabularies);
         return $this->render('index.twig', ['vocabularies' => $vocabularies]);
     }

@@ -51,4 +51,9 @@ class Vocabulary extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Translation::className(), ['id_voc' => 'id']);
     }
+
+    public function getUser()
+    {
+        return $this->hasOne(User::className(),  ['id' => 'id_user']);
+    }
 }

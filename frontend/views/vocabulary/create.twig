@@ -13,6 +13,19 @@
     {{ form.field(voc, 'name').label(lang('frontend', 'Name')) | raw }}
     {{ form.field(voc, 'description') | raw }}
     {{ form.field(voc, 'lang_pair') | raw }}
+    <select class="form-control lang-pair" id="left" name="">
+        <option value="ru">Русский</option>
+        <option value="en">Английский</option>
+        <option value="de">Немецкий</option>
+        <option value="pl">Польский</option>
+    </select>
+
+    <select class="form-control lang-pair" id="right" name="">
+        <option value="en">Английский</option>
+        <option value="ru">Русский</option>
+        <option value="de">Немецкий</option>
+        <option value="pl">Польский</option>
+    </select>
 
     <div class="form-group">
 

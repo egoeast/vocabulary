@@ -1,6 +1,14 @@
 /**
  * Created by User on 21.12.2017.
  */
+$(document).ready(function(){
+
+      $("#vocabulary-lang_pair").val("ru-en");
+      $(".lang-pair").change(function(){
+          $("#vocabulary-lang_pair").val($("#left").val()+"-"+$("#right").val());
+      })
+});
+
 $('.trans-btn').click(function(){
     //alert("Translate!");
    // alert($( "input[name='_csrf-frontend']" ).attr('value'));

@@ -1,6 +1,7 @@
 <?php
 namespace common\models;
 
+use frontend\models\Vocabulary;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
@@ -185,5 +186,10 @@ class User extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+
+    public function getVocabularies()
+    {
+        return $this->hasMany(Vocabulary::className(), ['id_user' => 'id']);
     }
 }

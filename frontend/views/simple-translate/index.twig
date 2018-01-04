@@ -5,19 +5,26 @@
 
     {{ lang('frontend', 'Hello') }}
 
+
+
     {% set form = active_form_begin({
     'id' : 'translation-form',
 
 
     })%}
-    {{ form.field(translation, 'id_voc').label(lang('frontend', 'Vocabulary')) | raw }}
+    <select class="form-control" name="Translation[id_voc]">
+    {% for voc in vocabularies %}
+        <option value="{{ voc.id }}">{{ voc.name }}</option>
+        {% endfor %}
+        </select>
+    <!--{{ form.field(translation, 'id_voc').label(lang('frontend', 'Vocabulary')) | raw }}-->
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-6">
-                {{ form.field(translation, 'text') | raw }}
+                {{ form.field(translation, 'text').textarea({'rows' : '4'}) | raw }}
             </div>
             <div class="col-md-6">
-                {{ form.field(translation, 'translation') | raw }}
+                {{ form.field(translation, 'translation').textarea({'rows' : '4'}) | raw }}
             </div>
             </div>
         </div>

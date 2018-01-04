@@ -72,7 +72,8 @@ class SimpleTranslateController extends Controller
                 $translation->save();
             }
             //echo Yii::$app->formatter->asDate(date('Y-m-d H:i:s', time()));
-            return $this->render('index.twig', ['translation' => $translation]);
+            $vocabularies = Yii::$app->user->getIdentity()->vocabularies;
+            return $this->render('index.twig', ['translation' => $translation, 'vocabularies' => $vocabularies]);
         }
         else $this->redirect('site/need-to-register');
     }
