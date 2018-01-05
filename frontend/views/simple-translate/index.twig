@@ -12,9 +12,9 @@
 
 
     })%}
-    <select class="form-control" name="Translation[id_voc]">
+    <select class="form-control" id="lang-pair" name="Translation[id_voc]">
     {% for voc in vocabularies %}
-        <option value="{{ voc.id }}">{{ voc.name }}</option>
+        <option value="{{ voc.lang_pair }}">{{ voc.name }}</option>
         {% endfor %}
         </select>
     <!--{{ form.field(translation, 'id_voc').label(lang('frontend', 'Vocabulary')) | raw }}-->

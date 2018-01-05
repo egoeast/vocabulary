@@ -14,6 +14,7 @@ $('.trans-btn').click(function(){
    // alert($( "input[name='_csrf-frontend']" ).attr('value'));
     // alert($("#translation-text").val());
     //startLoadingAnimation();
+
     $.ajax({
 
     url: '/simple-translate/translate',
@@ -21,10 +22,10 @@ $('.trans-btn').click(function(){
         data: {
             _csrf: yii.getCsrfToken(),
             text: $("#translation-text").val(),
+            pair: $("#lang-pair").val(),
         },
         success: function (data) {
-           //alert(data.search);
-            $( "input[name='Translation[translation]']" ).val(data.search);
+            $("#translation-translation" ).val(data.result);
         }
     });
     //$("#load-img").delay(1000);
