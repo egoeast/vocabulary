@@ -32,6 +32,38 @@ $('.trans-btn').click(function(){
     //stopLoadingAnimation();
 });
 
+$('.dic-trans-btn').click(function(){
+    //alert("Translate!");
+    // alert($( "input[name='_csrf-frontend']" ).attr('value'));
+    // alert($("#translation-text").val());
+    //startLoadingAnimation();
+
+    $.ajax({
+
+        url: '/vocabulary/translate',
+        type: 'post',
+        data: {
+            _csrf: yii.getCsrfToken(),
+            text: $("#translation-text").val(),
+            //pair: $("#lang-pair").val(),
+        },
+        success: function (data) {
+            console.log(data.result);
+            var arr = data.result.def;
+           arr.forEach(function(item, i, arr) {
+                console.log(arr[i].pos);
+                $("#trans-cont" ).html(arr[i].pos);
+            });
+
+            $("#translation-translation" ).val(data.result);
+        }
+    });
+    //$("#load-img").delay(1000);
+    //stopLoadingAnimation();
+});
+
+
+
 function startLoadingAnimation() // - функция запуска анимации
 {
     // найдем элемент с изображением загрузки и уберем невидимость:
