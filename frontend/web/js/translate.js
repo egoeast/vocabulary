@@ -49,10 +49,22 @@ $('.dic-trans-btn').click(function(){
         },
         success: function (data) {
             console.log(data.result);
-            var arr = data.result.def;
-           arr.forEach(function(item, i, arr) {
-                console.log(arr[i].pos);
-                $("#trans-cont" ).html(arr[i].pos);
+            var partOfSpeech = data.result.def;
+            //Перебираем массив с частями речи(сущ, прилаг и т.д.)
+            partOfSpeech.forEach(function(part, partOfSpeech) {
+               // console.log(arr[i].pos);
+                $("#trans-cont" ).append('<h3>'+part.pos+'</h3>');
+                var variantOfTrans = part.tr;
+                //Перебираем варианты перевода для каждой части речи
+                variantOfTrans.forEach(function(variant, variantOfTrans) {
+                   $("#trans-cont" ).append('<p>'+variant.text+'</p>');
+                    var examples = variant.ex;
+                    if (examples!=null){
+                    examples.forEach(function(examp, examples){
+                        $("#trans-cont" ).append('<p>'+examp.text+'</p>');
+                    });}
+               });
+
             });
 
             $("#translation-translation" ).val(data.result);
