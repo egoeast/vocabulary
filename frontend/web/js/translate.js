@@ -37,6 +37,8 @@ $('.dic-trans-btn').click(function(){
     // alert($( "input[name='_csrf-frontend']" ).attr('value'));
     // alert($("#translation-text").val());
     //startLoadingAnimation();
+    var transCont = $("#trans-cont" );
+    var transExample = $("#trans-example" );
 
     $.ajax({
 
@@ -53,15 +55,19 @@ $('.dic-trans-btn').click(function(){
             //Перебираем массив с частями речи(сущ, прилаг и т.д.)
             partOfSpeech.forEach(function(part, partOfSpeech) {
                // console.log(arr[i].pos);
-                $("#trans-cont" ).append('<h3>'+part.pos+'</h3>');
+                transCont.append('<h3>'+part.pos+'</h3>');
                 var variantOfTrans = part.tr;
                 //Перебираем варианты перевода для каждой части речи
                 variantOfTrans.forEach(function(variant, variantOfTrans) {
-                   $("#trans-cont" ).append('<p>'+variant.text+'</p>');
+                   transCont.append('<p>'+variant.text+'</p>');
                     var examples = variant.ex;
                     if (examples!=null){
                     examples.forEach(function(examp, examples){
-                        $("#trans-cont" ).append('<p>'+examp.text+'</p>');
+                        var text = '<p>'+ examp.text + ' - ';
+                        if(examp.tr!=null) {
+                            text += examp.tr[0].text + '</p>';
+                        }
+                        transExample.append(text);
                     });}
                });
 
