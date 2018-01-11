@@ -9,7 +9,7 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use common\widgets\Alert;
-
+use common\widgets\Hello;
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -25,6 +25,7 @@ AppAsset::register($this);
     <?php $this->head() ?>
 </head>
 <body>
+
 <?php $this->beginBody() ?>
 
 <div class="wrap">
@@ -69,6 +70,7 @@ AppAsset::register($this);
         <?= $content ?>
     </div>
 </div>
+<?= Hello::widget() ?>
 
 <footer class="footer">
     <div class="container">

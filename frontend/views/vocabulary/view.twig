@@ -1,13 +1,13 @@
-{{ use('yii\helpers\Html') }}
-{{ use('yii\widgets\ActiveForm') }}
-{{ use('yii\i18n\Formatter') }}
+
+{{ use('/common/widgets/LangSwitch') }}
+
 
 {{ voc.name }}
+{{ lang_switch_widget() }}
+
 
 {% set form = active_form_begin({
-'id' : 'translation-form',
-
-
+    'id' : 'translation-form',
 })%}
 
 <!--{{ form.field(translation, 'id_voc').label(lang('frontend', 'Vocabulary')) | raw }}-->

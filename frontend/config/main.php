@@ -68,6 +68,7 @@ return [
                     ],
                     'functions' => array(
                         'lang' => 'Yii::t',
+                        //'hello' => 'Hello::widget',
                         //'dateformat' => 'Yii::$app->formatter->asDate',
                     ),
                     'uses' => ['yii\bootstrap'],
