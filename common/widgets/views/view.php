@@ -6,20 +6,21 @@ use Yii;
 
 <div class="btn-group <?= $cssClass; ?>">
     <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-        <span class="uppercase"><?= Yii::$app->language; ?></span>
+        <span class="uppercase"><?= $_SESSION['_language'] ?></span>
         <span class="caret"></span>
     </a>
+
     <ul class="dropdown-menu">
         <li class="item-lang">
-            <?= Html::a('Go to English', array_merge(
+            <?= Html::a('English', array_merge(
                 \Yii::$app->request->get(),
-                [\Yii::$app->controller->route, 'language' => 'en']
+                [\Yii::$app->controller->route, 'language' => 'en-US']
             )); ?>
         </li>
         <li class="item-lang">
-            <?= Html::a('Перейти на русский', array_merge(
+            <?= Html::a('Русский', array_merge(
                 \Yii::$app->request->get(),
-                [\Yii::$app->controller->route, 'language' => 'ru']
+                [\Yii::$app->controller->route, 'language' => 'ru-RU']
             )); ?>
         </li>
     </ul>

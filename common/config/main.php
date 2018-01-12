@@ -24,7 +24,7 @@ return [
                 'frontend*' => [
                     'class' => 'yii\i18n\PhpMessageSource',
                     'basePath' => '@common/messages',
-                    //'sourceLanguage' => 'en-US',
+                    'sourceLanguage' => 'en-US',
                     'fileMap' => [
                         'frontend' => 'app.php',
 

@@ -60,7 +60,8 @@ class VocabularyController extends Controller
         $trans = $voc->translations;
         //VarDumper::dump($trans);
         $translation = new Translation();
-        Yii::$app->session->setFlash('info', 'This is the message');
+        //Yii::$app->session->setFlash('info', 'This is the message');
+        //Yii::$app->language = 'ru-RU';
         return $this->render('view.twig', ['voc' => $voc, 'trans' => $trans, 'translation' => $translation]);
     }
 

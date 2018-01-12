@@ -7,7 +7,7 @@ $params = array_merge(
 );
 
 return [
-    'language' => 'ru-RU',
+    //'language' => 'ru-RU',
     'sourceLanguage' => 'en-US',
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
@@ -42,7 +42,10 @@ return [
         ],
 
         'urlManager' => [
-            'class' => 'yii\web\UrlManager',
+            'class' => 'codemix\localeurls\UrlManager',
+
+            'languages' => ['en-US', 'en', 'ru-Ru', 'ru'],
+            //'class' => 'yii\web\UrlManager',
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
@@ -50,6 +53,12 @@ return [
                 'trans' => 'simple-translate/index',
                 'voc-view/<id:\d+>' => 'vocabulary/view',
                 
+            ],
+            'ignoreLanguageUrlPatterns' => [
+                // route pattern => url pattern
+                //'#^site/(login|register)#' => '#^(signin|signup)#',
+                '#^vocabulary/translate#' => '#^vocabulary/translate#',
+                '#^simple-translate/translate#' => '#^simple-translate/translate#',
             ],
         ],
         'view' => [
