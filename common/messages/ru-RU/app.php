@@ -15,4 +15,5 @@ return [
     'Text for translate' => 'Текст для перевода',
     'Translation' => 'Перевод',
     'Translate' => 'Перевести',
+    'Save' => 'Сохранить',
 ];

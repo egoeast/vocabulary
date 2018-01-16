@@ -17,14 +17,13 @@
             {{ form.field(translation, 'translation').textarea({'rows' : '4'}) | raw }}
         </div>
     </div>
+    <div class="form-group">
+        {{ html.a(lang('frontend', 'Translate'), '#', {'class':'btn btn-default dic-trans-btn'}) | raw }}
+        <input type="submit" value="{{ lang('frontend', 'Save') }}" class="btn btn-primary" />
+    </div>
 </div>
 
-<div class="form-group">
-    {{ html.a(lang('app', 'Translate'), '#', {'class':'btn btn-default dic-trans-btn'}) | raw }}
 
-    <input type="submit" value="Сохранить" class="btn btn-primary" />
-
-</div>
 </div>
 
 {{ active_form_end() }}

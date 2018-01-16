@@ -2,10 +2,12 @@
 
 namespace frontend\controllers;
 
+use common\components\Translator;
 use Faker\Provider\cs_CZ\DateTime;
 use Yii;
 use yii\web\Controller;
 use frontend\models\Translation;
+use common\components\YandexTranslator;
 
 class SimpleTranslateController extends Controller
 {
@@ -27,7 +29,10 @@ class SimpleTranslateController extends Controller
             //$lang = $data['pair'];
             $lang =  $data['pair'];
             $text =  $data['text'];
-            $translation = $this->yandexTranslate($text, $lang);
+            $traslator = new Translator(new YandexTranslator());
+
+            //$translation = $this->yandexTranslate($text, $lang);
+            $translation = $traslator->translate($text, $lang);
             //$searchby= explode(":", $data['searchby']);
             //$searchname= $searchname[0];
             //$searchby= $searchby[0];
