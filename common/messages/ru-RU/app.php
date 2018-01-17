@@ -16,4 +16,5 @@ return [
     'Translation' => 'Перевод',
     'Translate' => 'Перевести',
     'Save' => 'Сохранить',
+    'The specified translation direction is not supported' => 'Неверная языковая пара',
 ];

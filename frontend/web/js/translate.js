@@ -25,6 +25,7 @@ $('.trans-btn').click(function(){
             pair: $("#lang-pair").val(),
         },
         success: function (data) {
+            console.log(data);
             $("#translation-translation" ).val(data.result);
         }
     });

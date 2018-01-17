@@ -11,41 +11,34 @@ use common\components\YandexTranslator;
 
 class SimpleTranslateController extends Controller
 {
-    public function yandexTranslate($text, $lang)
+
+    public function actionTest()
     {
-        $apiKey = 'trnsl.1.1.20171116T103815Z.de890509a05594eb.07ad8f63c2e9da3b843adc43104ebcde9bb0e6d4';
-        $params = array( 'key' => $apiKey, 'text' => $text, 'lang' => $lang,);
-        $query = http_build_query($params);
-        $response = file_get_contents('https://translate.yandex.net/api/v1.5/tr.json/translate?'.$query);
-        $data = json_decode($response, true);
-        $text = $data['text'][0];
-        return $text;
+        $lang = 'en-ru';
+        $text =  'test';
+        $traslator = new Translator(new YandexTranslator());
+        $translation = $traslator->translate($text, $lang);
+        var_dump($translation);
+        //return $this->render('test.twig', ['translation' => $translation]);
     }
 
     public function actionTranslate()
     {
         if (Yii::$app->request->isAjax) {
             $data = Yii::$app->request->post();
-            //$lang = $data['pair'];
             $lang =  $data['pair'];
+            //$lang = 'jk-op';
             $text =  $data['text'];
             $traslator = new Translator(new YandexTranslator());
-
-            //$translation = $this->yandexTranslate($text, $lang);
             $translation = $traslator->translate($text, $lang);
-            //$searchby= explode(":", $data['searchby']);
-            //$searchname= $searchname[0];
-            //$searchby= $searchby[0];
-            //$search = // your logic;
+
+            //if ($translation['code'] != 200)
+            //    Yii::$app->session->setFlash('error',Yii::t('frontend', $translation['message'] ));
                 \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
             return [
-                'result' => $translation,
-
-                //'pair' => $data['pair'],
+                'result' => $translation['text'][0],
             ];
         }
-        //$lang = 'en-ru';
-        //$translation->translation = $this->yandexTranslate($text, $lang);
     }
 
     public function actionIndex()
