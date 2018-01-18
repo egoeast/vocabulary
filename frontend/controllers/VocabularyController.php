@@ -60,9 +60,11 @@ class VocabularyController extends Controller
         $trans = $voc->translations;
         //VarDumper::dump($trans);
         $translation = new Translation();
-        //Yii::$app->session->setFlash('info', 'This is the message');
-        //Yii::$app->language = 'ru-RU';
-        return $this->render('view.twig', ['voc' => $voc, 'trans' => $trans, 'translation' => $translation]);
+        //Yii::$app->session->setFlash('info', 'This is the message')
+        //Yii::$app->language = 'ru-U';
+        //if (isset($_GET['lang']))
+        //    $lang = $_GET['lang'];
+        return $this->render('view.twig', ['voc' => $voc, 'trans' => $trans, 'translation' => $translation,]);
     }
 
     public function actionCreate()

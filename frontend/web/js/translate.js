@@ -7,7 +7,13 @@ $(document).ready(function(){
       $(".lang-pair").change(function(){
           $("#vocabulary-lang_pair").val($("#left").val()+"-"+$("#right").val());
       })
+    $("#trans-variants a").on( "click", function(){
+        alert("sfsdf");
+        //$("#translation-translation").val(this.text);
+    });
 });
+
+
 
 $('.trans-btn').click(function(){
     //alert("Translate!");
@@ -61,7 +67,7 @@ $('.dic-trans-btn').click(function(){
                 var variantOfTrans = part.tr;
                 //Перебираем варианты перевода для каждой части речи
                 variantOfTrans.forEach(function(variant, variantOfTrans) {
-                   variantCont.append('<p>'+variant.text+'</p>');
+                   variantCont.append('<a class="add-var">'+variant.text+'</a>'+', ');
                     var examples = variant.ex;
                     if (examples!=null){
                     examples.forEach(function(examp, examples) {
@@ -77,12 +83,14 @@ $('.dic-trans-btn').click(function(){
 
             });
 
-            $("#translation-translation" ).val(data.result);
+            //$("#translation-translation" ).val(data.result);
         }
     });
     //$("#load-img").delay(1000);
     //stopLoadingAnimation();
 });
+
+
 
 
 
