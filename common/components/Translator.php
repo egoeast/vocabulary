@@ -11,8 +11,13 @@ class Translator
         $this->translator = $translator;
     }
 
-    public function translate($text, $langPair)
+    public function translate($text, $lang)
     {
-        return $this->translator->simpleTranslate($text, $langPair);
+        return $this->translator->simpleTranslate($text, $lang);
+    }
+
+    public function dictTranslate($text, $lang)
+    {
+        return $this->translator->dictTranslate($text, $lang);
     }
 }

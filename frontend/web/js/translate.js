@@ -7,9 +7,9 @@ $(document).ready(function(){
       $(".lang-pair").change(function(){
           $("#vocabulary-lang_pair").val($("#left").val()+"-"+$("#right").val());
       })
-    $("#trans-variants a").on( "click", function(){
-        alert("sfsdf");
-        //$("#translation-translation").val(this.text);
+    $("#trans-variants").on( "click", '.add-var', function(){
+        //alert("sfsdf");
+        $("#translation-translation").append(this.text+', ');
     });
 });
 
@@ -28,7 +28,8 @@ $('.trans-btn').click(function(){
         data: {
             _csrf: yii.getCsrfToken(),
             text: $("#translation-text").val(),
-            pair: $("#lang-pair").val(),
+
+
         },
         success: function (data) {
             console.log(data);
@@ -54,7 +55,7 @@ $('.dic-trans-btn').click(function(){
         data: {
             _csrf: yii.getCsrfToken(),
             text: $("#translation-text").val(),
-            //pair: $("#lang-pair").val(),
+            pair: $("#lang-pair").attr('data-lang'),
         },
         success: function (data) {
             console.log(data.result);

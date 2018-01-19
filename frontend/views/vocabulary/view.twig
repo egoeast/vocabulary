@@ -4,8 +4,8 @@
 
 
 <h1>{{ lang('frontend', 'Vocabulary') }} : {{ voc.name }}</h1>
-<h3>{{ lang('frontend', 'Language pair') }} : {{ voc.lang_pair }}</h3>
-<a class="add-var">add-var</a>
+<h3 id="lang-pair" data-lang="{{ voc.lang_pair }}">{{ lang('frontend', 'Language pair') }} : {{ voc.lang_pair }}</h3>
+
 <div>
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">
@@ -41,9 +41,8 @@
         {{ active_form_end() }}
         <div class="container">
 
-            <div class="row">
+            <div class="row" style="height: 500px;">
                 <div class="col-md-6" id="trans-variants">
-                    <a class="add-var">var</a>
                 </div>
                 <div class="col-md-6" id="trans-example">
 

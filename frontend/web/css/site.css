@@ -124,3 +124,7 @@ a.desc:after {
     z-index:1000;
     display:none
 }
+
+#trans-example {
+    overflow: scroll;
+}
