@@ -5,6 +5,12 @@ $(document).ready(function(){
 
       $("#vocabulary-lang_pair").val("ru-en");
       $(".lang-pair").change(function(){
+          var temp = $(this).find("option:selected").val();
+          alert($("#right").find().text());
+          $("#right [ value = temp ]").attr("selected", "selected");
+          if ($("#left").val()==$("#right").val()) {
+
+          }
           $("#vocabulary-lang_pair").val($("#left").val()+"-"+$("#right").val());
       })
     $("#trans-variants").on( "click", '.add-var', function(){

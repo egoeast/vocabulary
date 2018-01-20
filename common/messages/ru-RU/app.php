@@ -14,6 +14,7 @@ return [
     'Language pair' => 'Языковая пара',
     'Text for translate' => 'Текст для перевода',
     'Translation' => 'Перевод',
+    'Translator' => 'Переводчик',
     'Translate' => 'Перевести',
     'Save' => 'Сохранить',
     'The specified translation direction is not supported' => 'Неверная языковая пара',
