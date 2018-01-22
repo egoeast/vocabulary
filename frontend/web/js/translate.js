@@ -5,12 +5,12 @@ $(document).ready(function(){
 
       $("#vocabulary-lang_pair").val("ru-en");
       $(".lang-pair").change(function(){
-          var temp = $(this).find("option:selected").val();
-          alert($("#right").find().text());
-          $("#right [ value = temp ]").attr("selected", "selected");
-          if ($("#left").val()==$("#right").val()) {
+          //var temp = $(this).find("option:selected").val();
+          //alert($("#right").find().text());
+          //$("#right [ value = temp ]").attr("selected", "selected");
+          if ($(this).attr('id')=='left'){
+          change($("#left"),$("#right")) ;} else change($("#right"), $("#left")) ;
 
-          }
           $("#vocabulary-lang_pair").val($("#left").val()+"-"+$("#right").val());
       })
     $("#trans-variants").on( "click", '.add-var', function(){
@@ -19,7 +19,21 @@ $(document).ready(function(){
     });
 });
 
-
+function change($first, $second) {
+    if ($first.val()==$second.val()) {
+        //alert("errror");
+        var temp = $first.attr('data-cur-lang');
+        $first.attr('data-cur-lang', $first.val());
+        // var temp='ru';
+       //$second.attr('data-cur-lang', temp);
+        $second.find("[value ="+ temp+ "]").prop('selected', true);
+        $second.attr('data-cur-lang', $second.val());
+        //$(second[ value = second.attr('data-cur-lang') ]).attr("selected", "selected");
+    }
+    else {
+        $first.attr('data-cur-lang', $first.val());
+    }
+}
 
 $('.trans-btn').click(function(){
     //alert("Translate!");
