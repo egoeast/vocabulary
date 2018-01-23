@@ -48,12 +48,12 @@ $('.trans-btn').click(function(){
         data: {
             _csrf: yii.getCsrfToken(),
             text: $("#translation-text").val(),
-
+            lang: $("#left").val()+"-"+$("#right").val(),
 
         },
         success: function (data) {
             console.log(data);
-            $("#translation-translation" ).val(data.result);
+            $("#translation-translation" ).val(data.result.text[0]);
         }
     });
     //$("#load-img").delay(1000);

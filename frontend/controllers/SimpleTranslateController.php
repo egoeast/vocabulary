@@ -26,7 +26,7 @@ class SimpleTranslateController extends Controller
     {
         if (Yii::$app->request->isAjax) {
             $data = Yii::$app->request->post();
-            $lang =  $data['pair'];
+            $lang =  $data['lang'];
             //$lang = 'jk-op';
             $text =  $data['text'];
             $traslator = new Translator(new YandexTranslator());
@@ -36,7 +36,7 @@ class SimpleTranslateController extends Controller
             //    Yii::$app->session->setFlash('error',Yii::t('frontend', $translation['message'] ));
                 \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
             return [
-                'result' => $translation['text'][0],
+                'result' => $translation,
             ];
         }
     }
@@ -58,7 +58,8 @@ class SimpleTranslateController extends Controller
             if ($translation->load(Yii::$app->request->post()) && $translation->validate()) {
                 $text = $translation->text;
                 $lang = 'en-ru';
-                $translation->translation = $this->yandexTranslate($text, $lang);
+                $translator = new Translator(new YandexTranslator());
+                $translation->translation = $translator->translate($text, $lang);
                 //echo date('Y-m-d H:i:s', time());
                 //echo 'sad';
                 //echo Yii::app()->dateFormatter->formatDateTime(time(), 'long', 'short');

@@ -5,7 +5,26 @@
 
     {{ lang('frontend', 'Hello') }}
 
-
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <select class="form-control lang-pair" id="left" name="" data-cur-lang="ru">
+                    <option value="ru">Русский</option>
+                    <option value="en">Английский</option>
+                    <option value="de">Немецкий</option>
+                    <option value="pl">Польский</option>
+                </select>
+            </div>
+            <div class="col-md-6">
+                <select class="form-control lang-pair" id="right" name="" data-cur-lang="en">
+                    <option value="en">Английский</option>
+                    <option value="ru">Русский</option>
+                    <option value="de">Немецкий</option>
+                    <option value="pl">Польский</option>
+                </select>
+            </div>
+        </div>
+    </div>
 
     {% set form = active_form_begin({
     'id' : 'translation-form',
