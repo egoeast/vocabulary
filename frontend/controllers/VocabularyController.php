@@ -30,7 +30,10 @@ class VocabularyController extends Controller
             $text =  $data['text'];
             $translator = new Translator(new YandexTranslator());
             $translation = $translator->dictTranslate($text, $lang);
-            \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+            foreach ($translation['def'] as $key => $value ) {
+                $translation['def'][$key]['pos'] = Yii::t('frontend', $translation['def'][$key]['pos']);
+            }
+                \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
             return [
                 'result' => $translation,
 
@@ -43,6 +46,11 @@ class VocabularyController extends Controller
 
     public function actionView($id)
     {
+        //$translator = new Translator(new YandexTranslator());
+        //$translation1 = $translator->dictTranslate('test', 'en-ru');
+        //$translation1 = $translation1['def'];
+
+        //var_dump($translation1['def'][0]);
         $translation = new Translation();
         if ($translation->load(Yii::$app->request->post()) && $translation->validate()) {
             $text = $translation->text;

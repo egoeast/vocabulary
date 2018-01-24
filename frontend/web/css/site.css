@@ -126,5 +126,6 @@ a.desc:after {
 }
 
 #trans-example {
+    height: 200px;
     overflow: scroll;
 }

@@ -41,7 +41,7 @@
         {{ active_form_end() }}
         <div class="container">
 
-            <div class="row" style="height: 500px;">
+            <div class="row">
                 <div class="col-md-6" id="trans-variants">
                 </div>
                 <div class="col-md-6" id="trans-example">
@@ -58,6 +58,8 @@
                 <tr>
                     <th>{{ lang('frontend', 'Text') }}</th>
                     <th>{{ lang('frontend', 'Translation') }}</th>
+                    <th>{{ lang('frontend', 'Delete') }}</th>
+                    <th>{{ lang('frontend', 'Edit') }}</th>
                     <th>{{ lang('frontend', 'Date') }}</th>
                 </tr>
                 </thead>
@@ -68,6 +70,8 @@
                     <tr>
                         <td>{{ item.text }}</td>
                         <td>{{ item.translation }}</td>
+                        <td><a href="" class="btn btn-primary">{{ lang('frontend', 'Edit') }}</a></td>
+                        <td><a href="/translation/delete?id={{ item.id }}" class="btn btn-danger">{{ lang('frontend', 'Delete') }}</a></td>
                         <td>{{ item.date }}</td>
                     </tr>
 

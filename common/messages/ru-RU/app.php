@@ -18,4 +18,8 @@ return [
     'Translate' => 'Перевести',
     'Save' => 'Сохранить',
     'The specified translation direction is not supported' => 'Неверная языковая пара',
+    'noun' => 'cуществительное',
+    'verb' => 'глагол',
+    'adjective' => 'прилагательное',
+    'participle' => 'причастие',
 ];

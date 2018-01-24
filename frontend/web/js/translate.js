@@ -15,7 +15,8 @@ $(document).ready(function(){
       })
     $("#trans-variants").on( "click", '.add-var', function(){
         //alert("sfsdf");
-        $("#translation-translation").append(this.text+', ');
+        if ($("#translation-translation").val()!='') $("#translation-translation").append(', ')
+        $("#translation-translation").append(this.text);
     });
 });
 
@@ -87,8 +88,9 @@ $('.dic-trans-btn').click(function(){
                 variantCont.append('<h3>'+part.pos+'</h3>');
                 var variantOfTrans = part.tr;
                 //Перебираем варианты перевода для каждой части речи
-                variantOfTrans.forEach(function(variant, variantOfTrans) {
-                   variantCont.append('<a class="add-var">'+variant.text+'</a>'+', ');
+                variantOfTrans.forEach(function(variant, variantOfTrans, i) {
+                    if (i!=0) variantCont.append(' ');
+                    variantCont.append('<a class="add-var">'+variant.text+'</a>');
                     var examples = variant.ex;
                     if (examples!=null){
                     examples.forEach(function(examp, examples) {
