@@ -36,6 +36,20 @@ function change($first, $second) {
     }
 }
 
+
+$('.edit-btn').click(function(){
+    $parent = $(this).parent().parent();
+    $parent.children(":first").text();
+    $("#translation-text").val($parent.children(":first").text());
+    $("#translation-translation").val($parent.children(":eq(1)").text());
+    $("#trans-variants").empty();
+    $("#trans-example").empty();
+
+    $('.nav.nav-tabs li:first-child a').tab('show');
+
+});
+
+
 $('.trans-btn').click(function(){
     //alert("Translate!");
    // alert($( "input[name='_csrf-frontend']" ).attr('value'));
@@ -82,6 +96,7 @@ $('.dic-trans-btn').click(function(){
             console.log(data.result);
 
             var partOfSpeech = data.result.def;
+            if (partOfSpeech==null) variantCont.append('<h3>Нет перевода</h3>');
             //Перебираем массив с частями речи(сущ, прилаг и т.д.)
             partOfSpeech.forEach(function(part, partOfSpeech) {
                // console.log(arr[i].pos);

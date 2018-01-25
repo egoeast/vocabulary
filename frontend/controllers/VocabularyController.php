@@ -54,32 +54,42 @@ class VocabularyController extends Controller
         $translation = new Translation();
         if ($translation->load(Yii::$app->request->post()) && $translation->validate()) {
             $text = $translation->text;
+            $tr = new Translation();
+            $tr = Translation::find()->where(['text' => $text,
+                                            'id_voc' => $id
+            ])->one();
+            //var_dump($tr);
+            if ($tr!=null)
+            {
+                $tr->translation = $translation->translation;
+                $tr->date = date('Y-m-d H:i:s', time());
+                $tr->update();
+            } else
+            {
+                $translation->date = date('Y-m-d H:i:s', time());
+                $translation->id_voc = $id;
+                //$translation->date = Yii::$app->formatter->asDate('now', 'Y-m-d H:i:s');
+
+
+                //$translation->date = new DateTime(time());
+                //return "sad";
+
+                $translation->save();
+            }
             //var_dump($translation);
             //$lang = 'en-ru';
             //$translation->translation = $this->yandexTranslate($text, $lang);
             //echo date('Y-m-d H:i:s', time());
             //echo 'sad';
             //echo Yii::app()->dateFormatter->formatDateTime(time(), 'long', 'short');
-            $translation->date = date('Y-m-d H:i:s', time());
-            $translation->id_voc = $id;
-            //$translation->date = Yii::$app->formatter->asDate('now', 'Y-m-d H:i:s');
 
-
-            //$translation->date = new DateTime(time());
-            //return "sad";
-
-            $translation->save();
         }
 
 
         $voc = Vocabulary::findOne($id);
-        $trans = $voc->translations;
+        $trans = $voc->getTranslations()->orderBy('date DESC')->all();
         //VarDumper::dump($trans);
         $translation = new Translation();
-        //Yii::$app->session->setFlash('info', 'This is the message')
-        //Yii::$app->language = 'ru-U';
-        //if (isset($_GET['lang']))
-        //    $lang = $_GET['lang'];
         return $this->render('view.twig', ['voc' => $voc, 'trans' => $trans, 'translation' => $translation,]);
     }
 

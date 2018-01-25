@@ -67,10 +67,10 @@
                 {% for item in trans %}
 
 
-                    <tr>
-                        <td>{{ item.text }}</td>
-                        <td>{{ item.translation }}</td>
-                        <td><a href="" class="btn btn-primary">{{ lang('frontend', 'Edit') }}</a></td>
+                    <tr class="{{ item.id }}">
+                        <td class="text">{{ item.text }}</td>
+                        <td class="trans-text">{{ item.translation }}</td>
+                        <td><a class="btn btn-primary edit-btn">{{ lang('frontend', 'Edit') }}</a></td>
                         <td><a href="/translation/delete?id={{ item.id }}" class="btn btn-danger">{{ lang('frontend', 'Delete') }}</a></td>
                         <td>{{ item.date }}</td>
                     </tr>
