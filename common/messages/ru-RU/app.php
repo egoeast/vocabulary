@@ -6,6 +6,12 @@
  * Time: 14:06
  */
 return [
+    'Home' =>'Главная',
+    'About' => 'О нас',
+    'Contact' => 'Контакты',
+    'Simple translate' => 'Простой перевод',
+    'logout' => 'выйти',
+    'login' => 'войти',
     'Language' => 'Язык',
     'Hello' =>'Привет',
     'Vocabulary' =>'Словарь',

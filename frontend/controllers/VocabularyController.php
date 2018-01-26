@@ -13,6 +13,8 @@ use frontend\models\Translation;
 
 class VocabularyController extends Controller
 {
+    public $layout = 'main.twig';
+
     public function actionIndex()
     {
         //$user = User::findOne(Yii::$app->user->getId());
