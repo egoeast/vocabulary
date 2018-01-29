@@ -7,6 +7,7 @@ $params = array_merge(
 );
 
 return [
+    'layout'=>'main.twig',
     //'language' => 'ru-RU',
     'sourceLanguage' => 'en-US',
     'id' => 'app-frontend',

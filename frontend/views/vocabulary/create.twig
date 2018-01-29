@@ -9,36 +9,34 @@
     'id' : 'vocabulary',
 
 
-    })%}
+    }) %}
     {{ form.field(voc, 'name').label(lang('frontend', 'Name')) | raw }}
     {{ form.field(voc, 'description') | raw }}
     {{ form.field(voc, 'lang_pair') | raw }}
     <div class="container">
         <div class="row">
             <div class="col-md-6">
-            <select class="form-control lang-pair" id="left" name="" data-cur-lang="ru">
-                <option value="ru">Русский</option>
-                <option value="en">Английский</option>
-                <option value="de">Немецкий</option>
-        <option value="pl">Польский</option>
-    </select>
-    </div>
+                <select class="form-control lang-pair" id="left" name="" data-cur-lang="ru">
+                    {% for key, l in languages %}
+                        <option value="{{ key }}">{{ lang('frontend', l) }}</option>
+                    {% endfor %}
+                </select>
+            </div>
             <div class="col-md-6">
-    <select class="form-control lang-pair" id="right" name="" data-cur-lang="en">
-        <option value="en">Английский</option>
-        <option value="ru">Русский</option>
-        <option value="de">Немецкий</option>
-        <option value="pl">Польский</option>
-    </select>
-                </div>
+                <select class="form-control lang-pair" id="right" name="" data-cur-lang="en">
+                    <option value="en">Английский</option>
+                    <option value="ru">Русский</option>
+                    <option value="de">Немецкий</option>
+                    <option value="pl">Польский</option>
+                </select>
+            </div>
         </div>
     </div>
     <div class="form-group">
 
         <!--<?= Html::submitButton(Yii::t('app', 'Submit'), ['class' => 'btn btn-primary']) ?>-->
-        <!--{{ html.alang(('app', 'Hello'), 'link', {'class':'btn btn-default'}) | raw }}-->
 
-        <input type="submit" value="Сохранить" class="btn btn-primary" />
+        <input type="submit" value="Сохранить" class="btn btn-primary"/>
     </div>
     {{ active_form_end() }}
 </div><!-- weather-station-index -->
