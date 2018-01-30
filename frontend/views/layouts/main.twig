@@ -1,6 +1,6 @@
 {{ use('/common/widgets/LangSwitch') }}
 {{ register_asset_bundle('frontend/assets/AppAsset') }}  {# asset root for yii advanced template #}
-    {{   void(this.beginPage()) }}
+    {{ void(this.beginPage()) }}
 <!DOCTYPE html>
 <html lang="{{ app.language }}">
 <head>
@@ -8,65 +8,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {{ html.csrfMetaTags | raw }}
     <title>{{ html.encode(this.title) }}</title>
-    {{   void(this.head) }}
+    {{ void(this.head) }}
 </head>
 <body>
 <div class="wrap">
-    {{   void(this.beginBody()) }}
-<section id="header">
-    {# header content #}
-</section>
+    {{ void(this.beginBody()) }}
+    <section id="header">
+        {# header content #}
+    </section>
 
     {{ nav_bar_begin({
-            'brandLabel': '<div class="logo"><i class="fa fa-book" aria-hidden="true"></i>' ~lang('frontend', 'Vocabulary') ~'</div>',
-            'brandUrl' : app.homeUrl,
-            'options' : {
-                'class' : 'navbar-inverse navbar-fixed-top',
-            }
-        }) }}
-        {% set menuItems = [] %}
-        {% if app.user.isGuest == false %}
-            {% set menuItems = menuItems|merge([
-                {'label' : lang('frontend', 'Home'), 'url' : ['/site/index']},
-                {'label' : lang('frontend', 'About'), 'url' : ['/site/about']},
-                {'label' : lang('frontend', 'Contact'), 'url' : ['/site/contact']},
-                {'label' : lang('frontend', 'Vocabulary'), 'url' : ['/vocabulary/index']},
-                {'label' : lang('frontend', 'Simple translate'), 'url' : ['/simple-translate']},
+        'brandLabel': '<div class="logo"><i class="fa fa-book" aria-hidden="true"></i>' ~lang('frontend', 'Vocabulary') ~'</div>',
+        'brandUrl' : app.homeUrl,
+        'options' : {
+            'class' : 'navbar-inverse navbar-fixed-top',
+        }
+    }) }}
+    {% set menuItems = [] %}
+    {% set menuItems = menuItems|merge([
+    {'label' : lang('frontend', 'Home'), 'url' : ['/site/index']},
+    {'label' : lang('frontend', 'About'), 'url' : ['/site/about']},
+    {'label' : lang('frontend', 'Contact'), 'url' : ['/site/contact']},
+    ]) %}
+    {% if app.user.isGuest == false %}
+        {% set menuItems = menuItems|merge([
 
-                {
-                    'label' : lang('frontend', 'logout')~'(' ~ app.user.identity.username ~ ')',
-                    'url' : ['/site/logout'],
-                    'linkOptions' : {'data-method' : 'post'}
-                },
-                lang_switch_widget(),
-            ])
-        %}
-        {% else %}
-            {% set menuItems = menuItems|merge([
-                {'label' : lang('frontend', 'logout'), 'url' : ['/site/login']},
+        {'label' : lang('frontend', 'Vocabulary'), 'url' : ['/vocabulary/index']},
+        {'label' : lang('frontend', 'Simple translate'), 'url' : ['/simple-translate']},
 
-            ])
-        %}
-        {% endif %}
+        '<li>',
+        html.beginForm(['/site/logout'], 'post'),
+        html.submitButton(lang('frontend', 'Logout') ~ ' (' ~ app.user.identity.username ~ ')',
+        {'class' : 'btn btn-link logout'}),
+        html.endForm(),
+        '</li>',
 
-        {{ nav_widget({
-            'options': {
-                'class': 'navbar-nav navbar-right',
-            },
-            'items': menuItems
-        }) }}
-        {{ nav_bar_end() }}
+        lang_switch_widget(),
+        ]) %}
+    {% else %}
+        {% set menuItems = menuItems|merge([
+        {'label' : lang('frontend', 'Login'), 'url' : ['/site/login']},
+
+        ]) %}
+    {% endif %}
+
+    {{ nav_widget({
+        'options': {
+            'class': 'navbar-nav navbar-right',
+        },
+        'items': menuItems
+    }) }}
+    {{ nav_bar_end() }}
     <div class="container">
-        {{ content | raw}}
+        {{ content | raw }}
     </div>
 </div>
 <footer class="footer">
     <div class="container">
         <p class="pull-left">&copy; My Company {{ 'now'|date('Y') }}</p>
+
         <p class="pull-right">{{ Yii.powered() | raw }}</p>
     </div>
 </footer>
-{{   void(this.endBody()) }}
+{{ void(this.endBody()) }}
 </body>
 </html>
-{{   void(this.endPage()) }}
+{{ void(this.endPage()) }}

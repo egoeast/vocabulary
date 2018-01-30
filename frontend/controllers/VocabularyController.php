@@ -11,7 +11,7 @@ use frontend\models\Translation;
 
 class VocabularyController extends Controller
 {
-    public $layout = 'main.twig';
+
 
     private $languages = [
         'ru' => 'Russian',

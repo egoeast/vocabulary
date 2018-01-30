@@ -27,6 +27,8 @@ return [
                     'sourceLanguage' => 'en-US',
                     'fileMap' => [
                         'frontend' => 'app.php',
+                        'frontend/lang' => 'languages.php',
+
 
                     ],
                 ],
