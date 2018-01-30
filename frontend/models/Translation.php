@@ -43,7 +43,7 @@ class Translation extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('frontend', 'ID'),
             'id_voc' => Yii::t('frontend', 'Id Voc'),
-            'text' => Yii::t('frontend', 'Text'),
+            'text' => Yii::t('frontend', 'Text for translate'),
             'translation' => Yii::t('frontend', 'Translation'),
             'date' => Yii::t('frontend', 'Date'),
         ];

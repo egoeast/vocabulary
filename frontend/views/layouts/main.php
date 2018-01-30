@@ -9,7 +9,10 @@ use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 use common\widgets\Alert;
-
+use common\widgets\Hello;
+use common\widgets\LangSwitch;
+use common\widgets\LanguageDropdown;
+use yii\bootstrap\Dropdown;
 AppAsset::register($this);
 ?>
 <?php $this->beginPage() ?>
@@ -25,6 +28,7 @@ AppAsset::register($this);
     <?php $this->head() ?>
 </head>
 <body>
+
 <?php $this->beginBody() ?>
 
 <div class="wrap">
@@ -37,9 +41,11 @@ AppAsset::register($this);
         ],
     ]);
     $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
+        ['label' =>  Yii::t('frontend', 'Home'), 'url' => ['/site/index']],
         ['label' => 'About', 'url' => ['/site/about']],
         ['label' => 'Contact', 'url' => ['/site/contact']],
+        ['label' => 'Vocabulary', 'url' => ['/vocabulary/index']],
+        ['label' => 'Simple translate', 'url' => ['/simple-translate']],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Signup', 'url' => ['/site/signup']];
@@ -54,10 +60,16 @@ AppAsset::register($this);
             . Html::endForm()
             . '</li>';
     }
-    echo Nav::widget([
+    $menuItems[] = LangSwitch::widget();
+
+
+
+echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => $menuItems,
     ]);
+
+
     NavBar::end();
     ?>
 
@@ -66,9 +78,11 @@ AppAsset::register($this);
             'links' => isset($this->params['breadcrumbs']) ? $this->params['breadcrumbs'] : [],
         ]) ?>
         <?= Alert::widget() ?>
+
         <?= $content ?>
     </div>
 </div>
+
 
 <footer class="footer">
     <div class="container">

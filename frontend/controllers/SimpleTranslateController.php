@@ -2,51 +2,49 @@
 
 namespace frontend\controllers;
 
+use common\components\Translator;
 use Faker\Provider\cs_CZ\DateTime;
 use Yii;
 use yii\web\Controller;
 use frontend\models\Translation;
+use common\components\YandexTranslator;
 
 class SimpleTranslateController extends Controller
 {
-    public function yandexTranslate($text, $lang)
+
+    public function actionTest()
     {
-        $apiKey = 'trnsl.1.1.20171116T103815Z.de890509a05594eb.07ad8f63c2e9da3b843adc43104ebcde9bb0e6d4';
-        $params = array( 'key' => $apiKey, 'text' => $text, 'lang' => $lang,);
-        $query = http_build_query($params);
-        $response = file_get_contents('https://translate.yandex.net/api/v1.5/tr.json/translate?'.$query);
-        $data = json_decode($response, true);
-        $text = $data['text'][0];
-        return $text;
+        $lang = 'en-ru';
+        $text =  'test';
+        $traslator = new Translator(new YandexTranslator());
+        $translation = $traslator->translate($text, $lang);
+        var_dump($translation);
+        //return $this->render('test.twig', ['translation' => $translation]);
     }
 
     public function actionTranslate()
     {
         if (Yii::$app->request->isAjax) {
             $data = Yii::$app->request->post();
-            //$lang = $data['pair'];
-            $lang =  $data['pair'];
+            $lang =  $data['lang'];
+            //$lang = 'jk-op';
             $text =  $data['text'];
-            $translation = $this->yandexTranslate($text, $lang);
-            //$searchby= explode(":", $data['searchby']);
-            //$searchname= $searchname[0];
-            //$searchby= $searchby[0];
-            //$search = // your logic;
+            $traslator = new Translator(new YandexTranslator());
+            $translation = $traslator->translate($text, $lang);
+
+            //if ($translation['code'] != 200)
+            //    Yii::$app->session->setFlash('error',Yii::t('frontend', $translation['message'] ));
                 \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
             return [
                 'result' => $translation,
-
-                //'pair' => $data['pair'],
             ];
         }
-        //$lang = 'en-ru';
-        //$translation->translation = $this->yandexTranslate($text, $lang);
     }
 
     public function actionIndex()
     {
         if (Yii::$app->user->can('simpleTranslate')) {
-            Yii::$app->language = 'ru-RU';
+            //Yii::$app->language = 'ru-RU';
             //$lang = \Yii::$app->language;
             $translation = new Translation();
             //$translation->text ='123';
@@ -60,7 +58,8 @@ class SimpleTranslateController extends Controller
             if ($translation->load(Yii::$app->request->post()) && $translation->validate()) {
                 $text = $translation->text;
                 $lang = 'en-ru';
-                $translation->translation = $this->yandexTranslate($text, $lang);
+                $translator = new Translator(new YandexTranslator());
+                $translation->translation = $translator->translate($text, $lang);
                 //echo date('Y-m-d H:i:s', time());
                 //echo 'sad';
                 //echo Yii::app()->dateFormatter->formatDateTime(time(), 'long', 'short');

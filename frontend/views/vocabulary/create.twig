@@ -1,38 +1,48 @@
 {{ use('yii\helpers\Html') }}
 {{ use('yii\widgets\ActiveForm') }}
 
-<div class="">
+<div class="container-fluid">
 
-    {{ lang('frontend', 'Hello') }}
+    <h1>{{ lang('frontend', 'Create Vocabulary') }}</h1>
 
     {% set form = active_form_begin({
     'id' : 'vocabulary',
 
 
-    })%}
-    {{ form.field(voc, 'name').label(lang('frontend', 'Name')) | raw }}
-    {{ form.field(voc, 'description') | raw }}
-    {{ form.field(voc, 'lang_pair') | raw }}
-    <select class="form-control lang-pair" id="left" name="">
-        <option value="ru">Русский</option>
-        <option value="en">Английский</option>
-        <option value="de">Немецкий</option>
-        <option value="pl">Польский</option>
-    </select>
+    }) %}
+    <div class="row">
+        <div class="col-md-6">
+            {{ form.field(voc, 'name').label(lang('frontend', 'Name')) | raw }}
+        </div>
+        <div class="col-md-6">
+            {{ form.field(voc, 'description') | raw }}
+        </div>
+    </div>
+    {{ form.field(voc, 'lang_pair').hiddenInput() | raw }}
 
-    <select class="form-control lang-pair" id="right" name="">
-        <option value="en">Английский</option>
-        <option value="ru">Русский</option>
-        <option value="de">Немецкий</option>
-        <option value="pl">Польский</option>
-    </select>
-
+        <div class="row">
+            <div class="col-md-6">
+                <select class="form-control lang-pair" id="left" name="" data-cur-lang="ru">
+                    {% for key, l in languages %}
+                        <option value="{{ key }}">{{ lang('frontend/lang', l) }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-md-6">
+                <select class="form-control lang-pair" id="right" name="" data-cur-lang="en">
+                    {% for key, l in languages %}
+                        {% if key=='en' %}
+                            <option value="{{ key }}" selected="true">{{ lang('frontend/lang', l) }}</option>
+                        {% else %}
+                            <option value="{{ key }}">{{ lang('frontend/lang', l) }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+    <br/>
     <div class="form-group">
-
-        <!--<?= Html::submitButton(Yii::t('app', 'Submit'), ['class' => 'btn btn-primary']) ?>-->
-        <!--{{ html.a(lang('app', 'Hello'), 'link', {'class':'btn btn-default'}) | raw }}-->
-
-        <input type="submit" value="Сохранить" class="btn btn-primary" />
+        <input type="submit" value="Сохранить" class="btn btn-primary"/>
     </div>
     {{ active_form_end() }}
-</div><!-- weather-station-index -->
+</div>
