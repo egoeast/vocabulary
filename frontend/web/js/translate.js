@@ -1,22 +1,38 @@
 /**
  * Created by User on 21.12.2017.
  */
-$(document).ready(function(){
+$(document).ready(function () {
 
-      $("#vocabulary-lang_pair").val("ru-en");
-      $(".lang-pair").change(function(){
-          //var temp = $(this).find("option:selected").val();
-          //alert($("#right").find().text());
-          //$("#right [ value = temp ]").attr("selected", "selected");
-          if ($(this).attr('id')=='left'){
-          change($("#left"),$("#right")) ;} else change($("#right"), $("#left")) ;
+    $("#vocabulary-lang_pair").val("ru-en");
+    $(".lang-pair").change(function () {
+        //var temp = $(this).find("option:selected").val();
+        //alert($("#right").find().text());
+        //$("#right [ value = temp ]").attr("selected", "selected");
+        if ($(this).attr('id') == 'left') {
+            change($("#left"), $("#right"));
+        } else change($("#right"), $("#left"));
 
-          $("#vocabulary-lang_pair").val($("#left").val()+"-"+$("#right").val());
-      })
-    $("#trans-variants").on( "click", '.add-var', function(){
+        $("#vocabulary-lang_pair").val($("#left").val() + "-" + $("#right").val());
+    })
+
+    $(".single-trans:after").click(function(){alert("Yes!!");})
+
+    $("#trans-variants").on("click", '.add-var', function () {
         //alert("sfsdf");
-        if ($("#translation-translation").val()!='') $("#translation-translation").append(', ')
-        $("#translation-translation").append(this.text);
+        $("#trans-trans").append('<div class="single-trans">' + $(this).text() + '<button class="close"></button>></div>');
+
+        if ($("#translation-translation").val() != '') {
+            var text = $("#translation-translation").val();
+            $("#translation-translation").val(text + ', ' +  $(this).text());
+        } else $("#translation-translation").val($(this).text());
+    });
+
+    $("#text-clear").click(function () {
+        $("#translation-text").val('');
+    });
+
+    $("#trans-clear").click(function () {
+        $("#translation-translation").val('');
     });
 });
 

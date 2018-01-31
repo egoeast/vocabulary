@@ -20,10 +20,30 @@
                     <div class="col-md-6">
                         {{ form.field(translation, 'text').textarea({'rows' : '4'}) | raw }}
                     </div>
+                    <div class="single-trans">dsfasdfsd<button class="close"></button></div>
                     <div class="col-md-6">
                         {{ form.field(translation, 'translation').textarea({'rows' : '4'}) | raw }}
+                        <style>
+                            .single-trans {
+                                background: #00b3ee;
+                                color: red;
+                            }
+
+                            </style>
+                        <div id="trans-trans">
+
+                        </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <a class="btn btn-default" id="text-clear"><i class="fa fa-eraser" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="col-md-6">
+                        <a class="btn btn-default" id="trans-clear"><i class="fa fa-eraser" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+                <br/>
                 <div class="form-group">
                     {{ html.a(lang('frontend', 'Translate'), '#', {'class':'btn btn-default dic-trans-btn'}) | raw }}
                     <input type="submit" value="{{ lang('frontend', 'Save') }}" class="btn btn-primary" />
