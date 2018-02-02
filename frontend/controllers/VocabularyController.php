@@ -8,10 +8,10 @@ use Yii;
 use yii\web\Controller;
 use frontend\models\Vocabulary;
 use frontend\models\Translation;
+use yii\web\ForbiddenHttpException;
 
 class VocabularyController extends Controller
 {
-
 
     private $languages = [
         'ru' => 'Russian',
@@ -19,13 +19,25 @@ class VocabularyController extends Controller
         'de' => 'German',
         'pl' => 'Polish',
     ];
+
+    public function beforeAction($action)
+
+    {
+        //var_dump($action);
+        //die;
+        return parent::beforeAction($action);
+    }
     /**
      * @return string
      */
     public function actionIndex()
     {
-        $vocabularies = Yii::$app->user->getIdentity()->vocabularies;
-        return $this->render('index.twig', ['vocabularies' => $vocabularies]);
+        if (!Yii::$app->user->isGuest) {
+            $vocabularies = Yii::$app->user->getIdentity()->vocabularies;
+            return $this->render('index.twig', ['vocabularies' => $vocabularies]);
+        } else {
+            throw new ForbiddenHttpException('Access denied');
+        }
     }
 
     /**
@@ -94,7 +106,7 @@ class VocabularyController extends Controller
      */
     public function actionCreate()
     {
-        if (!Yii::$app->user->isGuest) {
+        if (!Yii::$app->user->can('createVocabulary')) {
             $voc = new Vocabulary();
             if ($voc->load(Yii::$app->request->post()) && $voc->validate()) {
                 $voc->id_user = Yii::$app->user->getId();
@@ -112,11 +124,14 @@ class VocabularyController extends Controller
     public function actionUpdate($id)
     {
         $voc = Vocabulary::findOne($id);
-        if ($voc->load(Yii::$app->request->post()) && $voc->validate()) {
-            $voc->update();
-            return $this->render('create.twig', ['voc' => $voc]);
+        if (\Yii::$app->user->can('editVocabulary')) {
+            if ($voc->load(Yii::$app->request->post()) && $voc->validate()) {
+                $voc->update();
+                return $this->render('create.twig', ['voc' => $voc]);
+            }
+            return $this->render('update.twig', ['voc' => $voc, 'languages' => $this->languages]);
         }
-        return $this->render('update.twig', ['voc' => $voc, 'languages' => $this->languages]);
+        else echo "Nope";
     }
 
     /**

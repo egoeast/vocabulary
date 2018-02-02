@@ -19,7 +19,7 @@ $(document).ready(function () {
 
     $("#trans-variants").on("click", '.add-var', function () {
         //alert("sfsdf");
-        $("#trans-trans").append('<div class="single-trans">' + $(this).text() + '<button class="close"></button>></div>');
+        $("#trans-trans").append('<div class="single-trans">' + $(this).text() + '<button class="close"></button></div>');
 
         if ($("#translation-translation").val() != '') {
             var text = $("#translation-translation").val();
