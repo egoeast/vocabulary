@@ -129,3 +129,8 @@ a.desc:after {
     height: 200px;
     overflow: scroll;
 }
+
+.single-trans {
+    background: #00b3ee;
+    color: red;
+}

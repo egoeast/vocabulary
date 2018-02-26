@@ -7,6 +7,7 @@ return [
     'Simple translate' => 'Простой перевод',
     'Logout' => 'Выйти',
     'Login' => 'Войти',
+    'Signup' => 'Зарегестрироваться',
     'Language' => 'Язык',
     'Hello' =>'Привет',
     'Vocabulary' =>'Словарь',
