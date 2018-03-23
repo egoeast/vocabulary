@@ -1,11 +1,12 @@
-
 <h1>{{ lang('frontend', 'Vocabulary') }} : {{ voc.name }}</h1>
 <h3 id="lang-pair" data-lang="{{ voc.lang_pair }}">{{ lang('frontend', 'Language pair') }} : {{ voc.lang_pair }}</h3>
 <div>
     <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">{{ lang('frontend', 'Translator') }}</a></li>
-        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">{{ lang('frontend', 'Vocabulary') }}</a></li>
+        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab"
+                                                  data-toggle="tab">{{ lang('frontend', 'Translator') }}</a></li>
+        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab"
+                                   data-toggle="tab">{{ lang('frontend', 'Vocabulary') }}</a></li>
     </ul>
 
     <!-- Tab panes -->
@@ -13,14 +14,16 @@
         <div role="tabpanel" class="tab-pane active" id="home">
             {% set form = active_form_begin({
             'id' : 'translation-form',
-            })%}
+            }) %}
 
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-6">
                         {{ form.field(translation, 'text').textarea({'rows' : '4'}) | raw }}
                     </div>
-                    <div class="single-trans">dsfasdfsd<button class="close"></button></div>
+                    <div >
+                        <button class="close"></button>
+                    </div>
                     <div class="col-md-6">
                         {{ form.field(translation, 'translation').textarea({'rows' : '4'}) | raw }}
                         <style>
@@ -29,8 +32,8 @@
                                 color: red;
                             }
                         </style>
-                        <div id="trans-trans" contenteditable="true">
-                            sadsd
+                        <div  contenteditable="true">
+
                         </div>
                     </div>
                 </div>
@@ -43,26 +46,25 @@
                     </div>
                 </div>
                 <br/>
+
                 <div class="form-group">
                     {{ html.a(lang('frontend', 'Translate'), '#', {'class':'btn btn-default dic-trans-btn'}) | raw }}
-                    <input type="submit" value="{{ lang('frontend', 'Save') }}" class="btn btn-primary" />
+                    <input type="submit" value="{{ lang('frontend', 'Save') }}" class="btn btn-primary"/>
                 </div>
             </div>
 
 
+            {{ active_form_end() }}
+            <div class="container">
 
+                <div class="row">
+                    <div class="col-md-6" id="trans-variants">
+                    </div>
+                    <div class="col-md-6" id="trans-example">
 
-        {{ active_form_end() }}
-        <div class="container">
-
-            <div class="row">
-                <div class="col-md-6" id="trans-variants">
-                </div>
-                <div class="col-md-6" id="trans-example">
-
+                    </div>
                 </div>
             </div>
-        </div>
 
 
         </div>
@@ -85,7 +87,8 @@
                         <td class="text">{{ item.text }}</td>
                         <td class="trans-text">{{ item.translation }}</td>
                         <td><a class="btn btn-primary edit-btn">{{ lang('frontend', 'Edit') }}</a></td>
-                        <td><a href="/translation/delete?id={{ item.id }}" class="btn btn-danger">{{ lang('frontend', 'Delete') }}</a></td>
+                        <td><a href="/translation/delete?id={{ item.id }}"
+                               class="btn btn-danger">{{ lang('frontend', 'Delete') }}</a></td>
                         <td>{{ item.date }}</td>
                     </tr>
 

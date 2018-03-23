@@ -12,6 +12,9 @@ use common\components\YandexTranslator;
 class SimpleTranslateController extends Controller
 {
 
+    /**
+     *
+     */
     public function actionTest()
     {
         $lang = 'en-ru';
@@ -19,21 +22,19 @@ class SimpleTranslateController extends Controller
         $traslator = new Translator(new YandexTranslator());
         $translation = $traslator->translate($text, $lang);
         var_dump($translation);
-        //return $this->render('test.twig', ['translation' => $translation]);
     }
 
+    /**
+     * @return array
+     */
     public function actionTranslate()
     {
         if (Yii::$app->request->isAjax) {
             $data = Yii::$app->request->post();
             $lang =  $data['lang'];
-            //$lang = 'jk-op';
             $text =  $data['text'];
             $traslator = new Translator(new YandexTranslator());
             $translation = $traslator->translate($text, $lang);
-
-            //if ($translation['code'] != 200)
-            //    Yii::$app->session->setFlash('error',Yii::t('frontend', $translation['message'] ));
                 \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
             return [
                 'result' => $translation,
@@ -41,38 +42,21 @@ class SimpleTranslateController extends Controller
         }
     }
 
+    /**
+     * @return string
+     */
     public function actionIndex()
     {
         if (Yii::$app->user->can('simpleTranslate')) {
-            //Yii::$app->language = 'ru-RU';
-            //$lang = \Yii::$app->language;
             $translation = new Translation();
-            //$translation->text ='123';
-            //$translation->translation ='123';
-            //$translation->id_voc = '1';
-            //$translation->save();
-            //Yii::$app->formatter->locale = 'ru-RU';
-            //echo Yii::$app->formatter->asDate(time(), 'long', 'short');
-
-            // echo Yii::$app->dateFormatter->formatDateTime(time(), 'long', 'short');
             if ($translation->load(Yii::$app->request->post()) && $translation->validate()) {
                 $text = $translation->text;
                 $lang = 'en-ru';
                 $translator = new Translator(new YandexTranslator());
                 $translation->translation = $translator->translate($text, $lang);
-                //echo date('Y-m-d H:i:s', time());
-                //echo 'sad';
-                //echo Yii::app()->dateFormatter->formatDateTime(time(), 'long', 'short');
                 $translation->date = date('Y-m-d H:i:s', time());
-                //$translation->date = Yii::$app->formatter->asDate('now', 'Y-m-d H:i:s');
-
-
-                //$translation->date = new DateTime(time());
-                //return "sad";
-
                 $translation->save();
             }
-            //echo Yii::$app->formatter->asDate(date('Y-m-d H:i:s', time()));
             $vocabularies = Yii::$app->user->getIdentity()->vocabularies;
             return $this->render('index.twig', ['translation' => $translation, 'vocabularies' => $vocabularies]);
         }

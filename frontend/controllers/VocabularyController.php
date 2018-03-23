@@ -27,6 +27,7 @@ class VocabularyController extends Controller
         //die;
         return parent::beforeAction($action);
     }
+
     /**
      * @return string
      */
@@ -76,7 +77,6 @@ class VocabularyController extends Controller
             $tr = Translation::find()->where(['text' => $text,
                 'id_voc' => $id
             ])->one();
-            //var_dump($tr);
             if ($tr != null) {
                 $tr->translation = $translation->translation;
                 $tr->date = date('Y-m-d H:i:s', time());
@@ -84,13 +84,9 @@ class VocabularyController extends Controller
             } else {
                 $translation->date = date('Y-m-d H:i:s', time());
                 $translation->id_voc = $id;
-                //$translation->date = Yii::$app->formatter->asDate('now', 'Y-m-d H:i:s');
-                //$translation->date = new DateTime(time());
 
                 $translation->save();
             }
-            //echo date('Y-m-d H:i:s', time());
-            //echo Yii::app()->dateFormatter->formatDateTime(time(), 'long', 'short');
 
         }
 
@@ -130,8 +126,7 @@ class VocabularyController extends Controller
                 return $this->render('create.twig', ['voc' => $voc]);
             }
             return $this->render('update.twig', ['voc' => $voc, 'languages' => $this->languages]);
-        }
-        else echo "Nope";
+        } else echo "Nope";
     }
 
     /**

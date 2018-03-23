@@ -31,11 +31,11 @@
 
 
     })%}
-    <select class="form-control" id="lang-pair" name="Translation[id_voc]">
+   <!-- <select class="form-control" id="lang-pair" name="Translation[id_voc]">
     {% for voc in vocabularies %}
         <option value="{{ voc.lang_pair }}">{{ voc.name }}</option>
-        {% endfor %}
-        </select>
+    {% endfor %}
+        </select>-->
     <!--{{ form.field(translation, 'id_voc').label(lang('frontend', 'Vocabulary')) | raw }}-->
     <div class="container-fluid">
         <div class="row">
@@ -53,7 +53,7 @@
         <!--<?= Html::submitButton(Yii::t('app', 'Submit'), ['class' => 'btn btn-primary']) ?>-->
         {{ html.a(lang('app', 'Translate'), '#', {'class':'btn btn-default trans-btn'}) | raw }}
 
-        <input type="submit" value="Сохранить" class="btn btn-primary" />
+        <!--<input type="submit" value="Сохранить" class="btn btn-primary" />-->
 
     </div>
     {{ active_form_end() }}
